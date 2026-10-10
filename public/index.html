@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wortraten</title>
+<meta name="theme-color" content="#1f3a2e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="board">
+  <header>
+    <h1>Wortraten</h1>
+    <div id="scores" class="scores hidden"></div>
+  </header>
+
+  <!-- Startseite -->
+  <section id="lobby" class="panel">
+    <p class="lead" id="lobbyText">Einer denkt sich ein Wort aus, der andere rät Buchstabe für Buchstabe. Jeder falsche Buchstabe baut ein Stück am Fahrrad – ist es fertig, ist die Runde verloren. Nach jeder Runde wird getauscht.</p>
+    <label>Dein Name
+      <input id="nameInput" maxlength="20" autocomplete="nickname" placeholder="Dein Name">
+    </label>
+    <button id="startBtn" class="btn primary">Neues Spiel starten</button>
+    <div id="history" class="history"></div>
+  </section>
+
+  <!-- Spiel -->
+  <section id="game" class="hidden">
+    <p id="status" class="status"></p>
+
+    <div id="share" class="panel share hidden">
+      <p>Schick diesen Link an deinen Mitspieler:</p>
+      <div class="sharerow">
+        <input id="shareLink" readonly>
+        <button id="copyBtn" class="btn">Kopieren</button>
+      </div>
+    </div>
+
+    <div id="setForm" class="panel hidden">
+      <label>Geheimes Wort
+        <div class="sharerow">
+          <input id="wordInput" type="password" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="z. B. Gabelstapler">
+          <button id="eyeBtn" class="btn small" type="button" aria-label="Wort anzeigen">👁</button>
+        </div>
+      </label>
+      <label>Tipp (optional)
+        <input id="hintInput" maxlength="40" placeholder="z. B. Logistik">
+      </label>
+      <div class="row">
+        <button id="setBtn" class="btn primary">Los geht's</button>
+        <button id="randomBtn" class="btn">Zufallswort</button>
+      </div>
+      <p id="formError" class="error"></p>
+    </div>
+
+    <div id="play" class="hidden">
+      <svg id="bike" viewBox="0 40 200 125" aria-label="Fahrrad">
+        <g class="chalk">
+          <!-- 1 Hinterrad --><g class="part"><circle cx="50" cy="125" r="32"/><line x1="50" y1="93" x2="50" y2="157"/><line x1="18" y1="125" x2="82" y2="125"/></g>
+          <!-- 2 Vorderrad --><g class="part"><circle cx="150" cy="125" r="32"/><line x1="150" y1="93" x2="150" y2="157"/><line x1="118" y1="125" x2="182" y2="125"/></g>
+          <!-- 3 Hinterbau --><g class="part"><line x1="50" y1="125" x2="90" y2="125"/><line x1="50" y1="125" x2="80" y2="78"/></g>
+          <!-- 4 Rahmen --><g class="part"><line x1="90" y1="125" x2="141" y2="85"/><line x1="80" y1="78" x2="138" y2="72"/></g>
+          <!-- 5 Sattelrohr --><line class="part" x1="90" y1="125" x2="78" y2="66"/>
+          <!-- 6 Gabel --><line class="part" x1="136" y1="64" x2="150" y2="125"/>
+          <!-- 7 Lenker --><polyline class="part" points="136,64 132,53 147,50 151,59"/>
+          <!-- 8 Sattel --><path class="part" d="M66 64 Q78 58 92 64 Z"/>
+          <!-- 9 Kettenblatt + Kette --><g class="part"><circle cx="90" cy="125" r="9"/><line x1="50" y1="121" x2="90" y2="116"/><line x1="50" y1="129" x2="90" y2="134"/></g>
+          <!-- 10 Kurbeln + Pedale --><g class="part"><line x1="90" y1="125" x2="100" y2="143"/><line x1="94" y1="143" x2="106" y2="143"/><line x1="90" y1="125" x2="80" y2="107"/><line x1="74" y1="107" x2="86" y2="107"/></g>
+        </g>
+      </svg>
+      <p id="lives" class="lives"></p>
+      <p id="hint" class="hint"></p>
+      <div id="word" class="word"></div>
+      <p id="secret" class="secret hidden"></p>
+      <div id="keyboard" class="keyboard"></div>
+      <form id="solveForm" class="sharerow solve hidden">
+        <input id="solveInput" maxlength="24" autocomplete="off" spellcheck="false" placeholder="Ganzes Wort raten">
+        <button class="btn">Lösen</button>
+      </form>
+    </div>
+
+    <div id="over" class="panel hidden">
+      <p id="overText" class="overtext"></p>
+      <button id="rematchBtn" class="btn primary">Revanche (Rollen tauschen)</button>
+    </div>
+  </section>
+</main>
+<p class="foot"><a href="/">Neues Spiel</a></p>
+<script src="app.js"></script>
+</body>
+</html>
